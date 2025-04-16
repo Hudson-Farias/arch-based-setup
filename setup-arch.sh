@@ -10,7 +10,6 @@ sudo pacman -Syu --noconfirm
 echo '[+] Installing base packages...'
 sudo pacman -S --noconfirm \
   base-devel \
-  git \
   curl \
   unzip \
   zip \
@@ -62,7 +61,7 @@ asdf plugin-add nodejs || true
 asdf plugin-add python || true
 asdf plugin-add dotnet-core || true
 
+# 
 echo '[+] Setup finished'
 chsh -s $(which zsh)
-zsh
-source ~/.zshrc
+echo '[+] To start zsh now, run: exec zsh'
