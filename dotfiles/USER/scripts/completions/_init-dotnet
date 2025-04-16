@@ -1,0 +1,12 @@
+#compdef init-dotnet
+
+_init-dotnet() {
+  local expl
+  local -a versions
+
+  versions=("${(@f)$(asdf list dotnet-core 2>/dev/null | grep -E '^[[:space:]]*[0-9]+\.[0-9]+\.[0-9]+' | sed 's/^[[:space:]]*//')}")
+
+  _describe -t versions 'dotnet versions' versions
+}
+
+compdef _init-dotnet init-dotnet

@@ -1,0 +1,12 @@
+#compdef init-python
+
+_init-python() {
+  local expl
+  local -a versions
+
+  versions=("${(@f)$(asdf list python 2>/dev/null | grep -E '^[[:space:]]*[0-9]+\.[0-9]+\.[0-9]+' | sed 's/^[[:space:]]*//')}")
+
+  _describe -t versions 'python versions' versions
+}
+
+compdef _init-python init-python

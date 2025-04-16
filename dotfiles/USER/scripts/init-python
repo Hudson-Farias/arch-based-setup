@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo 'use: ./init-python.sh <python_version>'
+  exit 1
+fi
+
+PYTHON_VERSION="$1"
+
+if ! asdf list python | tr -d ' ' | grep -q "^$PYTHON_VERSION\$"; then
+  asdf install python "$PYTHON_VERSION"
+fi
+
+asdf local python "$PYTHON_VERSION"
+
+python -m venv .venv
+
+source .venv/bin/activate
+pip install --upgrade pip
+
+cat <<EOF > .gitignore
+.venv/
+*/__pycache__/
+*.pyc
+EOF
+
+echo "Project Started with Python $PYTHON_VERSION"

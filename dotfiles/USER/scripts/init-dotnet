@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo 'use: ./init-dotnet.sh <dotnet_version>'
+  exit 1
+fi
+
+DOTNET_VERSION="$1"
+
+if ! asdf list dotnet-core | tr -d ' ' | grep -q "^$DOTNET_VERSION\$"; then
+  asdf install dotnet-core "$DOTNET_VERSION"
+fi
+
+asdf local dotnet-core "$DOTNET_VERSION"
+
+cat <<EOF > .gitignore
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+EOF
+
+echo "Project Started with .NET $DOTNET_VERSION"
