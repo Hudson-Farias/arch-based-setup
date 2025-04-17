@@ -43,8 +43,8 @@ yay -S --noconfirm \
 # 
 echo '[+] Dotfiles setting...'
 cd dotfiles
-stow -t / ROOT
-stow -t ~ USER
+sudo stow -t / ROOT --adopt
+stow -t ~ USER --adopt
 cd ..
 
 # 
@@ -65,3 +65,4 @@ asdf plugin-add dotnet-core || true
 echo '[+] Setup finished'
 chsh -s $(which zsh)
 echo '[+] To start zsh now, run: exec zsh'
+zsh
